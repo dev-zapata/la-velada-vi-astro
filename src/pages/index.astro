@@ -1,0 +1,121 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.astro";
+import Hero from "../components/Hero.astro";
+import FightCard from "../components/FightCard.astro";
+import Venue from "../components/Venue.astro";
+import Tickets from "../components/Tickets.astro";
+import Footer from "../components/Footer.astro";
+
+const fights = [
+  {
+    fighter1: { name: "IlloJuan", alias: "El Favorito del Chat", record: "0-0-0", country: "🇪🇸", image: "/fighters/illojuan.jpg" },
+    fighter2: { name: "TheGrefg", alias: "The Boss", record: "0-0-0", country: "🇪🇸", image: "/fighters/thegrefg.jpg" },
+    weight: "Estelar",
+    rounds: 4,
+    featured: true,
+  },
+  {
+    fighter1: { name: "Fernanfloo", alias: "La Leyenda", record: "0-0-0", country: "🇸🇻", image: "/fighters/fernanfloo.jpg" },
+    fighter2: { name: "Yo Soy Plex", alias: "El Veterano", record: "0-0-0", country: "🇪🇸", image: "/fighters/yosoyplex.jpg" },
+    weight: "Leyendas",
+    rounds: 3,
+    featured: false,
+  },
+  {
+    fighter1: { name: "Lit Killah", alias: "El MC", record: "0-0-0", country: "🇦🇷", image: "/fighters/litkillah.jpg" },
+    fighter2: { name: "Kidd Keo", alias: "Trap Star", record: "0-0-0", country: "🇪🇸", image: "/fighters/kiddkeo.jpg" },
+    weight: "80 kg",
+    rounds: 3,
+    featured: false,
+  },
+  {
+    fighter1: { name: "Viruzz", alias: "El Comeback", record: "0-0-0", country: "🇪🇸", image: "/fighters/viruzz.jpg" },
+    fighter2: { name: "Gero Arias", alias: "El Toro", record: "0-0-0", country: "🇦🇷", image: "/fighters/geroarias.webp" },
+    weight: "82 kg",
+    rounds: 3,
+    featured: false,
+  },
+  {
+    fighter1: { name: "Edu Aguirre", alias: "El Chiringuito", record: "0-0-0", country: "🇪🇸", image: "/fighters/eduaguirre.jpg" },
+    fighter2: { name: "Gastón Edul", alias: "ESPN", record: "0-0-0", country: "🇦🇷", image: "/fighters/gastonedul.jpg" },
+    weight: "78 kg",
+    rounds: 3,
+    featured: true,
+  },
+  {
+    fighter1: { name: "Marta Díaz", alias: "La Influencer", record: "0-0-0", country: "🇪🇸", image: "/fighters/martadiaz.jpg" },
+    fighter2: { name: "Tatiana Kaer", alias: "La Guerrera", record: "0-0-0", country: "🇨🇴", image: "/fighters/tatianakaer.jpg" },
+    weight: "58 kg",
+    rounds: 3,
+    featured: false,
+  },
+  {
+    fighter1: { name: "Samy Rivers", alias: "El Artista", record: "0-0-0", country: "🇪🇸", image: "/fighters/samyrivers.jpg" },
+    fighter2: { name: "RoRo Bueno", alias: "El Incansable", record: "0-0-0", country: "🇪🇸", image: "/fighters/rorobueno.jpg" },
+    weight: "75 kg",
+    rounds: 3,
+    featured: false,
+  },
+  {
+    fighter1: { name: "Fabiana", alias: "La Sevillana", record: "0-0-0", country: "🇪🇸", image: "/fighters/fabianasevillana.png" },
+    fighter2: { name: "La Parce", alias: "Fuerza Latina", record: "0-0-0", country: "🇨🇴", image: "/fighters/laparce.jpg" },
+    weight: "62 kg",
+    rounds: 3,
+    featured: false,
+  },
+  {
+    fighter1: { name: "Clersss", alias: "La Streamer", record: "0-0-0", country: "🇪🇸", image: "/fighters/clersss.webp" },
+    fighter2: { name: "Natalia MX", alias: "La Mexicana", record: "0-0-0", country: "🇲🇽", image: "/fighters/nataliamx.jpg" },
+    weight: "60 kg",
+    rounds: 3,
+    featured: false,
+  },
+  {
+    fighter1: { name: "Alondrissa", alias: "La Gamer", record: "0-0-0", country: "🇲🇽", image: "/fighters/alondrissa.webp" },
+    fighter2: { name: "Angie Velasco", alias: "La Fiera", record: "0-0-0", country: "🇨🇴", image: "/fighters/angievelasco.jpg" },
+    weight: "56 kg",
+    rounds: 3,
+    featured: false,
+  },
+];
+---
+
+<Layout title="La Velada del A\u00f1o VI | El evento de boxeo m\u00e1s grande del streaming">
+  <Navbar />
+  <main>
+    <Hero />
+
+    <!-- Combates Section -->
+    <section id="combates" class="relative pt-10 pb-24 sm:pt-16 sm:pb-32">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <!-- Section header -->
+        <div class="text-center mb-16">
+          <span class="text-xs font-medium uppercase tracking-[0.3em] text-primary">La cartelera</span>
+          <h2 class="mt-4 font-heading text-4xl sm:text-5xl md:text-6xl font-bold uppercase text-white">
+            Los <span class="text-gradient">combates</span>
+          </h2>
+          <p class="mt-4 text-gray-400 max-w-xl mx-auto">
+            10 peleas que van a romper internet. Streamers, creadores y leyendas del contenido se suben al ring.
+          </p>
+        </div>
+
+        <!-- Fight cards grid -->
+        <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {fights.map((fight) => <FightCard {...fight} />)}
+        </div>
+
+        <!-- Total fights -->
+        <div class="mt-12 text-center">
+          <p class="text-sm text-gray-500">
+            <span class="text-primary font-medium">10 combates confirmados</span> — La noche más épica del streaming.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <Venue />
+    <Tickets />
+  </main>
+  <Footer />
+</Layout>

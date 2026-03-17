@@ -1,0 +1,91 @@
+---
+interface Props {
+  fighter1: { name: string; alias: string; record: string; country: string; image: string };
+  fighter2: { name: string; alias: string; record: string; country: string; image: string };
+  weight: string;
+  rounds: number;
+  featured?: boolean;
+}
+
+const { fighter1, fighter2, weight, rounds, featured = false } = Astro.props;
+---
+
+<article
+  class:list={[
+    "group relative overflow-hidden rounded-2xl border transition-all duration-500 hover:scale-[1.02]",
+    featured
+      ? "border-primary/30 bg-gradient-to-b from-primary/10 to-surface-card glow-primary"
+      : "border-white/5 bg-surface-card hover:border-primary/20",
+  ]}
+>
+  {featured && (
+    <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-neon-pink to-neon-purple"></div>
+  )}
+
+  <!-- Match info header -->
+  <div class="flex items-center justify-between px-6 pt-5 pb-2">
+    <span class="text-xs font-medium uppercase tracking-widest text-gray-500">
+      {weight}
+    </span>
+    <span class="rounded-full bg-white/5 px-3 py-1 text-xs font-medium text-gray-400">
+      {rounds} rounds
+    </span>
+  </div>
+
+  <!-- Fighters -->
+  <div class="flex items-center justify-between gap-4 px-6 py-6">
+    <!-- Fighter 1 -->
+    <div class="flex-1 text-center">
+      <div class:list={[
+        "mx-auto mb-3 relative h-24 w-24 overflow-hidden rounded-full border-2 transition-all",
+        featured
+          ? "border-primary/40 group-hover:border-primary group-hover:shadow-[0_0_20px_rgba(245,158,11,0.3)]"
+          : "border-neon-blue/20 group-hover:border-neon-blue/60 group-hover:shadow-[0_0_20px_rgba(0,212,255,0.2)]",
+      ]}>
+        <img
+          src={fighter1.image}
+          alt={fighter1.name}
+          class="h-full w-full object-cover"
+          loading="lazy"
+        />
+      </div>
+      <h3 class="font-heading text-lg font-bold uppercase text-white leading-tight">
+        {fighter1.name}
+      </h3>
+      <p class="text-xs font-medium text-primary mt-0.5">"{fighter1.alias}"</p>
+      <p class="text-xs text-gray-500 mt-1">{fighter1.country} · {fighter1.record}</p>
+    </div>
+
+    <!-- VS -->
+    <div class="flex flex-col items-center">
+      <div class="relative">
+        <span class="font-heading text-3xl font-black text-gradient glow-text">VS</span>
+      </div>
+    </div>
+
+    <!-- Fighter 2 -->
+    <div class="flex-1 text-center">
+      <div class:list={[
+        "mx-auto mb-3 relative h-24 w-24 overflow-hidden rounded-full border-2 transition-all",
+        featured
+          ? "border-primary/40 group-hover:border-primary group-hover:shadow-[0_0_20px_rgba(245,158,11,0.3)]"
+          : "border-neon-red/20 group-hover:border-neon-red/60 group-hover:shadow-[0_0_20px_rgba(239,68,68,0.2)]",
+      ]}>
+        <img
+          src={fighter2.image}
+          alt={fighter2.name}
+          class="h-full w-full object-cover"
+          loading="lazy"
+        />
+      </div>
+      <h3 class="font-heading text-lg font-bold uppercase text-white leading-tight">
+        {fighter2.name}
+      </h3>
+      <p class="text-xs font-medium text-neon-pink mt-0.5">"{fighter2.alias}"</p>
+      <p class="text-xs text-gray-500 mt-1">{fighter2.country} · {fighter2.record}</p>
+    </div>
+  </div>
+
+  <!-- Hover effect line -->
+  <div class="h-0.5 w-0 bg-gradient-to-r from-primary to-neon-purple transition-all duration-500 group-hover:w-full"></div>
+</article>
